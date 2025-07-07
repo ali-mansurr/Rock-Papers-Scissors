@@ -41,32 +41,37 @@ function getHumanChoice() {
     return humanChoice;
 }
 
-
-let humanScore = 0;
-let computerScore = 0;
-
 function capitalize(word) {
     return word.at(0).toUpperCase() + word.slice(1);
 }
 
 
-function playRound (humanChoice, computerChoice) {
-    console.log(`Player: ${capitalize(humanChoice)}      Computer: ${capitalize(computerChoice)}`)
 
-    if(humanChoice === computerChoice){
-        console.log("Thats a tie!");
-    } else if(humanChoice === "rock" && computerChoice === "scissors" ||
-            humanChoice === "paper" && computerChoice === "rock" ||
-            humanChoice === "scissors" && computerChoice === "paper"
-    ){
-        console.log(`You win! ${capitalize(humanChoice)} beats ${capitalize(computerChoice)}.`)
-        humanScore += 1;
-    } else {
-        console.log(`You lose! ${capitalize(computerChoice)} beats ${capitalize(humanChoice)}.`)
-        computerScore += 1;
+function playGame(){
+    let humanScore = 0;
+    let computerScore = 0;
+    let rounds = Number(prompt("How many round do you want to play? "));
+
+    function playRound (humanChoice, computerChoice) {
+        console.log(`Player: ${capitalize(humanChoice)}      Computer: ${capitalize(computerChoice)}`)
+
+        if(humanChoice === computerChoice){
+            console.log("Thats a tie!");
+        } else if(humanChoice === "rock" && computerChoice === "scissors" ||
+                humanChoice === "paper" && computerChoice === "rock" ||
+                humanChoice === "scissors" && computerChoice === "paper"
+        ){
+            console.log(`You win! ${capitalize(humanChoice)} beats ${capitalize(computerChoice)}.`)
+            humanScore += 1;
+        } else {
+            console.log(`You lose! ${capitalize(computerChoice)} beats ${capitalize(humanChoice)}.`)
+            computerScore += 1;
+        }
+        console.log(`Score =>   Player: ${humanScore}   Computer: ${computerScore}`)
     }
-    console.log(`Score =>   Player: ${humanScore}   Computer: ${computerScore}`)
+    for( let i = 0; i < rounds; i++) {
+        playRound(getHumanChoice(), getComputerChoice());
+    }
 }
 
-playRound(getHumanChoice(), getComputerChoice());
-
+playGame();
