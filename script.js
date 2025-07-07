@@ -22,7 +22,7 @@ function getComputerChoice() {
 }
 
 function getHumanChoice() {
-    let input = prompt("Choose your move: \n1. Rock \n2. Paper \n3. Sciccors \nEnter the number of your choice:")
+    let input = prompt("Choose your move: \n1. Rock \n2. Paper \n3. Scissors \nEnter the number of your choice:")
     let humanChoice = undefined;
     switch (Number(input)) {
         case 1:
