@@ -45,10 +45,13 @@ function getHumanChoice() {
 let humanScore = 0;
 let computerScore = 0;
 
+function capitalize(word) {
+    return word.at(0).toUpperCase() + word.slice(1);
+}
 
 
 function playRound (humanChoice, computerChoice) {
-    console.log(`Player: ${humanChoice}      Computer: ${computerChoice}`)
+    console.log(`Player: ${capitalize(humanChoice)}      Computer: ${capitalize(computerChoice)}`)
 
     if(humanChoice === computerChoice){
         console.log("Thats a Tie!");
@@ -56,15 +59,14 @@ function playRound (humanChoice, computerChoice) {
             humanChoice === "paper" && computerChoice === "rock" ||
             humanChoice === "scissors" && computerChoice === "paper"
     ){
-        console.log(`You win! ${humanChoice} beats ${computerChoice}`)
+        console.log(`You win! ${capitalize(humanChoice)} beats ${capitalize(computerChoice)}`)
         humanScore += 1;
     } else {
-        console.log(`You lose! ${computerChoice} beats ${humanChoice}`)
+        console.log(`You lose! ${capitalize(computerChoice)} beats ${capitalize(humanChoice)}`)
         computerScore += 1;
     }
     console.log(`Score =>   Player: ${humanScore}   Computer: ${computerScore}`)
 }
 
 playRound(getHumanChoice(), getComputerChoice());
-
 
