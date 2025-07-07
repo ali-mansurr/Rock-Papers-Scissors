@@ -54,15 +54,15 @@ function playRound (humanChoice, computerChoice) {
     console.log(`Player: ${capitalize(humanChoice)}      Computer: ${capitalize(computerChoice)}`)
 
     if(humanChoice === computerChoice){
-        console.log("Thats a Tie!");
+        console.log("Thats a tie!");
     } else if(humanChoice === "rock" && computerChoice === "scissors" ||
             humanChoice === "paper" && computerChoice === "rock" ||
             humanChoice === "scissors" && computerChoice === "paper"
     ){
-        console.log(`You win! ${capitalize(humanChoice)} beats ${capitalize(computerChoice)}`)
+        console.log(`You win! ${capitalize(humanChoice)} beats ${capitalize(computerChoice)}.`)
         humanScore += 1;
     } else {
-        console.log(`You lose! ${capitalize(computerChoice)} beats ${capitalize(humanChoice)}`)
+        console.log(`You lose! ${capitalize(computerChoice)} beats ${capitalize(humanChoice)}.`)
         computerScore += 1;
     }
     console.log(`Score =>   Player: ${humanScore}   Computer: ${computerScore}`)
