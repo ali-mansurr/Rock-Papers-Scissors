@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    color: #fff;
+    background: linear-gradient(90deg, rgba(7, 19, 56, 1) 0%, rgba(48, 71, 122, 1) 50%, rgba(25, 36, 96, 1) 100%);
+    font-family: "rubik";
+    
+}
+
+li {
+    list-style: none;
+}
+
+h1 {
+    font-size: 40px;
+    padding: 20px;
+}
+h2 {
+    font-size: 30px;
+    padding: 10px 0;
+}
+
+h1,
+h2,
+p {
+    text-align: center;
+}
+
+
+.game-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 80px 50px 80px;
+}
+
+.score {
+    font-size: 20px;
+    font-family: "Pixelify Sans";
+}
+
+.player-choices {
+    text-align: end;
+    padding: 0 100px;
+}
+
+button {
+    width: 120px;
+    padding: 10px;
+    margin-bottom: 7px;
+    font-size: 16px;
+    color: white;
+    background-color: #2A407D;
+    border: 2px solid rgba(0, 0, 0, 0);
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+button:hover {
+    border: 2px solid #2A69CF;
+    background-color: #152B5C;
+}
