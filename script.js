@@ -1,77 +1,54 @@
+let playerScore = 0;
+let computerScore = 0;
+let winnerMessage = "";
+
 function getRandomInt(max) {
-    return Math.floor(Math.random() * max);
+    return Math.floor(Math.random() * max)
 }
 
-function getComputerChoice() {
-    let randomInt = getRandomInt(3);
-    let computerChoice = undefined;
-    switch (randomInt) {
-        case 0:
-            computerChoice = "rock";
-            break;
-        case 1:
-            computerChoice = "paper";
-            break;
-        case 2:
-            computerChoice = "scissors";
-            break;
-        default:
-            break;
+function getRandomChoice() {
+    const choices = ["rock", "paper", "scissors"];
+    return choices[getRandomInt(3)]
+}
+
+function getPlayerChoice(event) {
+    if (!event.target.matches("button")) return null;
+    if (event.target.textContent === "I feel lucky!") return getRandomChoice();
+    return event.target.textContent.toLowerCase();
+}
+
+function playRound(pChoice, cChoice) {
+    winnerMessage = "";
+    if (pChoice === cChoice) {
+        return "Its a tie";
+    } else if (
+        pChoice === "rock" && cChoice === "scissors" ||
+        pChoice === "paper" && cChoice === "rock" ||
+        pChoice === "scissors" && cChoice === "paper"
+    ) {
+        playerScore += 1;
+        return `You win! ${pChoice} beats ${cChoice}`;
+    } else {
+        computerScore += 1;
+        return `Computer wins! ${cChoice} beats ${pChoice}`;
     }
-    return computerChoice;
+
 }
 
-function getHumanChoice() {
-    let input = prompt("Choose your move: \n1. Rock \n2. Paper \n3. Scissors \nEnter the number of your choice:")
-    let humanChoice = undefined;
-    switch (Number(input)) {
-        case 1:
-            humanChoice = "rock";
-            break;
-        case 2:
-            humanChoice = "paper";
-            break;
-        case 3:
-            humanChoice = "scissors";
-            break;
-        default:
-            alert("Invalid Input");
-            break;
-    }
-    return humanChoice;
-}
+const btn = document.querySelector("ul");
+const cScore = document.querySelector(".computer-score");
+const pScore = document.querySelector(".player-score");
+const resultMessage = document.querySelectorAll(".result")
 
-function capitalize(word) {
-    return word.at(0).toUpperCase() + word.slice(1);
-}
-
-
-
-function playGame(){
-    let humanScore = 0;
-    let computerScore = 0;
-    let rounds = Number(prompt("How many round do you want to play? "));
-
-    function playRound (humanChoice, computerChoice) {
-        console.log(`Player: ${capitalize(humanChoice)}      Computer: ${capitalize(computerChoice)}`)
-
-        if(humanChoice === computerChoice){
-            console.log("Thats a tie!");
-        } else if(humanChoice === "rock" && computerChoice === "scissors" ||
-                humanChoice === "paper" && computerChoice === "rock" ||
-                humanChoice === "scissors" && computerChoice === "paper"
-        ){
-            console.log(`You win! ${capitalize(humanChoice)} beats ${capitalize(computerChoice)}.`)
-            humanScore += 1;
-        } else {
-            console.log(`You lose! ${capitalize(computerChoice)} beats ${capitalize(humanChoice)}.`)
-            computerScore += 1;
-        }
-        console.log(`Score =>   Player: ${humanScore}   Computer: ${computerScore}`)
-    }
-    for( let i = 0; i < rounds; i++) {
-        playRound(getHumanChoice(), getComputerChoice());
-    }
-}
-
-playGame();
+btn.addEventListener("click", (e) => {
+    const playerChoice = getPlayerChoice(e);
+    const computerChoice = getRandomChoice();
+    if(playerChoice === null) return;
+    const result = playRound(playerChoice, computerChoice);
+    cScore.textContent = computerScore;
+    pScore.textContent = playerScore;
+    
+    resultMessage[0].textContent = `Computer chose: ${computerChoice}`; 
+    resultMessage[1].textContent = `You chose: ${playerChoice}`;
+    resultMessage[2].textContent = result;
+})
